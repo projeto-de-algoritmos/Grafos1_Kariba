@@ -43,7 +43,7 @@ export class AnimalService {
     animals.forEach((animal) => {
       if(animal.power < newAnimal) {
         this.addConnection(newAnimal.name, animal.name);
-      } else if(animal.power < newAnimal) {
+      } else if(animal.power > newAnimal) {
         this.addConnection(animal.name, newAnimal.name);
       } else {
         this.addConnection(newAnimal.name, animal.name);

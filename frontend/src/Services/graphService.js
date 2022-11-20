@@ -9,12 +9,13 @@ export class GraphService {
   }
 
   // configurar no para ser usado com a bibliteca cytoscape
-  nodeSelector(id, label, image) {
+  nodeSelector(id, label, image, color) {
     const node = {
       data: {
         id,
         label,
         image,
+        color
       },
 
       position: {
@@ -38,14 +39,45 @@ export class GraphService {
     return edge;
   }
 
-  // Add a edge to the graph
+  // IMPORTANTE: Trata os dados para o formato de mapping -> exemp: ["rato", ["elefante", "humano",...]]
   addEdge(v, w) {
     const values = this.matrixAdj.get(v) ?? [];
     this.matrixAdj.set(v, [...values, w]);
   }
 
-  get graph() {
+  graph() {
     return this.matrixAdj;
+  }
+
+  bfs(start) {
+    const foundedAnimals = [];
+    const queue = [];
+    const visited = new Array(this.vertex);
+
+    let i, tam = visited.length;
+    for (i = 0; i < tam; ++i) {
+        visited[i] = false;
+    }
+
+    visited[start] = true;
+    queue.push(start)
+
+    while(queue.length) {
+      const selectAnimal = queue.shift();
+
+      foundedAnimals.push(selectAnimal);
+
+      const presas = this.matrixAdj.get(selectAnimal);
+
+      presas.forEach((presa) => {
+        if(!visited[presa]) {
+          visited[presa] = true;
+          queue.push(presa);
+        }
+      });
+    }
+
+    return foundedAnimals;
   }
 
 }

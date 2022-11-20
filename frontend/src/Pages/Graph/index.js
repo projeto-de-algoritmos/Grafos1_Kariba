@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react"
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CytoscapeComponent from 'react-cytoscapejs';
 import { AnimalService } from "../../Services/animalService"
 import { GraphService } from "../../Services/graphService";
+
+import { GraphComponent } from "../../Components/Graph";
+import { InsertAnimalModal } from "../../Components/Modal";
 
 const GraphView = () => {
 
   const [graph, setGraph] = useState(null);
-
-  const animalService = new AnimalService();
-  const graphService = new GraphService(30);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
+    const animalService = new AnimalService();
+    const graphService = new GraphService(30);
     const dados = [];
-
-    const animals  = animalService.getAnimals();
+    const animals = animalService.getAnimals();
 
     animals.forEach((a) => {
-      dados.push(graphService.nodeSelector(a.name, a.name, a.image))
+      dados.push(graphService.nodeSelector(a.name, a.name, a.image, a.color))
     })
 
     const connections = animalService.getAnimalsConnections();
 
     connections.forEach((c) => {
-      // const animal = animalService.findAnimalByName(c.predator);
       dados.push(graphService.edgeSelector(c.predator, c.presa));
 
       graphService.addEdge(c.predator, c.presa);
@@ -32,13 +33,21 @@ const GraphView = () => {
     setGraph(dados);
   }, [])
 
-  console.log(graph)
+  const renderModal = () => {
 
-  const elements = [
-    { data: { id: 'one', label: 'Node 1' }, position: { x: 0, y: 0 } },
-    { data: { id: 'two', label: 'Node 2' }, position: { x: 100, y: 0 } },
-    { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
-  ];
+    console.log(show)
+
+    if (show === true) {
+      return (
+        <InsertAnimalModal
+          setShow={(setShow())}
+          show={show}
+        />
+      )
+    }
+
+    return null
+  }
 
   return (
     graph ? (<div
@@ -49,34 +58,16 @@ const GraphView = () => {
         alignItems: "center"
       }}
     >
-      <CytoscapeComponent
-        elements={graph}
-        style={{ width: '600px', height: '600px' }}
-        layout={{
-          name: "circle",
-          fit: true,
-          directed: true
-        }}
-        stylesheet={[
-          {
-            selector: "node",
-            style: {
-              width: 120,
-              height: 120,
-            },
-          },
-          {
-            selector: 'edge',
-            style: {
-              width: 5,
-              "line-color": "black",
-              "target-arrow-color": "black",
-              "target-arrow-shape": "triangle",
-              "curve-style": "bezier",
-            }
-          }
-        ]}
+      <GraphComponent
+        graph={graph}
       />
+      <Button
+        variant="primary"
+        onClick={() => { setShow(true) }}
+      >
+        Adicionar animal no oasis
+      </Button>
+      {renderModal}
     </div>) : (<>Carregando...</>)
   )
 }
