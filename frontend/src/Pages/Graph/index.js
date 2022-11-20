@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navigate } from "react-router-dom"
 import CytoscapeComponent from 'react-cytoscapejs';
-import Cytoscape from 'cytoscape';
 import { AnimalService } from "../../Services/animalService"
 import { GraphService } from "../../Services/graphService";
 
@@ -33,7 +30,7 @@ const GraphView = () => {
     })
 
     setGraph(dados);
-  })
+  }, [])
 
   console.log(graph)
 
@@ -44,7 +41,7 @@ const GraphView = () => {
   ];
 
   return (
-    <div
+    graph ? (<div
       style={{
         display: "flex",
         flexDirection: "column",
@@ -55,13 +52,17 @@ const GraphView = () => {
       <CytoscapeComponent
         elements={graph}
         style={{ width: '600px', height: '600px' }}
+        layout={{
+          name: "circle",
+          fit: true,
+          directed: true
+        }}
         stylesheet={[
           {
             selector: "node",
             style: {
               width: 120,
               height: 120,
-              shape: "circle",
             },
           },
           {
@@ -76,7 +77,7 @@ const GraphView = () => {
           }
         ]}
       />
-    </div>
+    </div>) : (<>Carregando...</>)
   )
 }
 
