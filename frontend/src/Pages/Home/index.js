@@ -2,10 +2,10 @@ import React from "react"
 import { Title, SubTitle } from "./styles"
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const navigate = Navigate();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -40,7 +40,7 @@ const HomePage = () => {
             margin: '1rem'
           }} variant="outline-primary"
           onClick={() => {
-            navigate("/grafico")
+            navigate("/oasis")
           }}
         >
           Vamos começar!
