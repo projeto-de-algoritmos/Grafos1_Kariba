@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { AnimalService } from "../../Services/animalService"
 import { GraphService } from "../../Services/graphService";
+import { StorageService } from "../../Services/storageService";
 
 import { GraphComponent } from "../../Components/Graph";
 import { InsertAnimalModal } from "../../Components/Modal";
@@ -15,6 +16,7 @@ const GraphView = () => {
     
     const animalService = new AnimalService();
     const graphService = new GraphService(1);
+    const storageService = new StorageService();
     const dados = [];
     const animals = animalService.getAnimals();
 
@@ -31,8 +33,10 @@ const GraphView = () => {
     })
 
     setGraph(dados);
+    storageService.setData("@Grafo", dados)
     setVertex(graphService.bfs("Rato").length)
   }, [flag])
+
 
   return (
     graph ? (

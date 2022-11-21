@@ -1,3 +1,5 @@
+import { AnimalService } from "./animalService";
+
 export class GraphService {
 
   vertex;       // numero de animais
@@ -73,9 +75,25 @@ export class GraphService {
       }
     }
 
-    console.log(foundedAnimals, "wwwwwww")
-
     return foundedAnimals;
+  }
+
+  generateGraph() {
+    const animalService = new AnimalService();
+    const dados = [];
+    const animals = animalService.getAnimals();
+
+    animals.forEach((a) => {
+      dados.push(this.nodeSelector(a.name, a.name, a.image, a.color))
+    })
+
+    const connections = animalService.getAnimalsConnections();
+
+    connections.forEach((c) => {
+      dados.push(this.edgeSelector(c.predator, c.presa));
+
+      this.addEdge(c.predator, c.presa);
+    })
   }
 
 }

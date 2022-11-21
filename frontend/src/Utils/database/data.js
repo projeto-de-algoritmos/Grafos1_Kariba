@@ -3,48 +3,56 @@ const animals = [
     name: "Rato",
     power: 1,
     color: 'pink',
+    number: 0,
     image: "https://img.icons8.com/color/512/mouse-animal.png"
   },
   {
     name: "Suricata",
     power: 2,
     color: 'red',
+    number: 0,
     image: "https://img.icons8.com/fluency/512/suricate-lunette.png"
   },
   {
     name: "Zebra",
     power: 3,
     color: 'orange',
+    number: 0,
     image: "https://img.icons8.com/external-tulpahn-flat-tulpahn/512/external-zebra-wild-animals-tulpahn-flat-tulpahn.png"
   },
   {
     name: "Girafa",
     power: 4,
     color: 'lightyellow',
+    number: 0,
     image: "https://img.icons8.com/external-tulpahn-flat-tulpahn/512/external-giraffe-wild-animals-tulpahn-flat-tulpahn.png"
   },
   {
     name: "Avestruz",
     power: 5,
     color: 'green',
+    number: 0,
     image: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/512/external-ostrich-animal-flaticons-lineal-color-flat-icons-3.png"
   },
   {
     name: "Tigre",
     power: 6,
     color: 'lightblue',
+    number: 0,
     image: "https://img.icons8.com/external-justicon-flat-justicon/512/external-tiger-animal-justicon-flat-justicon.png"
   },
   {
     name: "Rinoceronte",
     power: 7,
     color: 'darkblue',
+    number: 0,
     image: "https://img.icons8.com/emoji/512/rhinoceros-emoji.png"
   },
   {
     name: "Elefante",
     power: 8,
     color: 'purple',
+    number: 0,
     image: "https://img.icons8.com/fluency/512/elephant.png"
   },
 ]

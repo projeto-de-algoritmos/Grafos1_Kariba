@@ -3,9 +3,11 @@ import { Title, SubTitle } from "./styles"
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
+import { AnimalService } from "../../Services/animalService";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const animalService = new AnimalService();
 
   return (
     <div
@@ -41,6 +43,7 @@ const HomePage = () => {
           }} variant="outline-primary"
           onClick={() => {
             navigate("/oasis")
+            animalService.setAnimalsAndConnectionsLocalStorage()
           }}
         >
           Vamos começar!

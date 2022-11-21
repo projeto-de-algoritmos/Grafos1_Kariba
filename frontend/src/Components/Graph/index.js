@@ -1,12 +1,15 @@
 import React from "react"
 import CytoscapeComponent from 'react-cytoscapejs';
+import { StorageService } from "../../Services/storageService";
 
 const GraphComponent = ({graph}) => {
+
+  const storageService = new StorageService();
 
   return (
     <>
       <CytoscapeComponent
-        elements={graph}
+        elements={storageService.getData("@Grafo")}
         style={{ width: '100%', height: '600px', backgroundColor: "lightgray" }}
         layout={{
           name: "circle",

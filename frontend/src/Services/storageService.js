@@ -6,7 +6,7 @@ export class StorageService {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  getData(key) {
+  getData(key) {  
     const data = localStorage.getItem(key);
 
     if (!data) return '';
