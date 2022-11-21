@@ -37,8 +37,6 @@ export class GraphService {
 
   // IMPORTANTE: Trata os dados para o formato de mapping -> exemp: ["rato", ["elefante", "humano",...]]
   addEdge(v, w) {
-
-    console.log(v, "nao achou??")
     const values = this.matrixAdj.get(v) ?? [];
     this.matrixAdj.set(v, [...values, w]);
   }
@@ -62,18 +60,20 @@ export class GraphService {
 
     while(queue.length) {
       const selectAnimal = queue.shift();
-
       foundedAnimals.push(selectAnimal);
-
       const presas = this.matrixAdj.get(selectAnimal);
 
-      presas.forEach((presa) => {
-        if(!visited[presa]) {
-          visited[presa] = true;
-          queue.push(presa);
+      if (presas) {
+        for (let i of presas) {
+          if (!visited[i]) {
+            visited[i] = true;
+            queue.push(i);
+          }
         }
-      });
+      }
     }
+
+    console.log(foundedAnimals, "wwwwwww")
 
     return foundedAnimals;
   }

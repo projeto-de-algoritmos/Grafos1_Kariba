@@ -9,6 +9,7 @@ const GraphView = () => {
 
   const [graph, setGraph] = useState(null);
   const [flag, setFlag] = useState(true);
+  const [vertex, setVertex] = useState(null)
 
   useEffect(() => {
     
@@ -21,13 +22,7 @@ const GraphView = () => {
       dados.push(graphService.nodeSelector(a.name, a.name, a.image, a.color))
     })
 
-    console.log(dados)
-
     const connections = animalService.getAnimalsConnections();
-
-    console.log(connections, "teste")
-
-    console.log(graphService.graph())
 
     connections.forEach((c) => {
       dados.push(graphService.edgeSelector(c.predator, c.presa));
@@ -36,6 +31,7 @@ const GraphView = () => {
     })
 
     setGraph(dados);
+    setVertex(graphService.bfs("Rato").length)
   }, [flag])
 
   return (
@@ -51,6 +47,7 @@ const GraphView = () => {
         <GraphComponent
           graph={graph}
         />
+        {(vertex % 2 === 0) ? "é bipartido" : "não é bipartido"}
         <InsertAnimalModal
           flag={flag}
           setFlag={setFlag}

@@ -30,7 +30,7 @@ const GraphComponent = ({graph}) => {
             cy.elements(`node#${elem.data?.id}`).css({
               "width": "70px",
               "height": "70px",
-              "background-image": "url(" + elem.data?.image + ")",
+              "background-image": `url(${elem.data?.image ?? "https://freesvg.org/img/Weird-shadow-of-a-dog-by-Rones.png"})`,
               "background-fit": "contain",
               "background-color": `${elem.data?.color ? elem.data?.color : "red"}`
             });

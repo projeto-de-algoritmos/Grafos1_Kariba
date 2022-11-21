@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import { AnimalService } from "../../Services/animalService";
-import { StorageService } from "../../Services/storageService";
 
 const InsertAnimalModal = ({flag, setFlag}) => {
 
@@ -39,7 +38,6 @@ const InsertAnimalModal = ({flag, setFlag}) => {
       <Button variant="primary" onClick={handleShow}>
         Adicionar um novo animal ao oasis
       </Button>
-      {JSON.stringify(newAnimalData)}{flag ? "1" : "0"}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Preencha os campos para adicionar um novo animal</Modal.Title>

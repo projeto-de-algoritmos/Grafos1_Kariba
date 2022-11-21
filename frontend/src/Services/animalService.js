@@ -26,8 +26,6 @@ export class AnimalService {
       presa: presa
     }
 
-    console.log(newConnection)
-
     conections.push(newConnection);
   }
 
@@ -52,8 +50,6 @@ export class AnimalService {
     })
 
     animals.push(newAnimal);
-
-    console.log(animals);
 
     // Se o poder do animal for maior ou igual a 8 o rato poderá assustar o novo animal.
     if(newAnimal.power >= 8) {
