@@ -47,7 +47,7 @@ const HomePage = () => {
         </Button>
       </div>
 
-      <img alt="kariba" width="300px" height="auto" src={require('../../assets/pic6979262.png')} />
+      <img alt="kariba" width="200px" height="auto" src={require('../../assets/pic6979262.png')} />
 
 
     </div>
