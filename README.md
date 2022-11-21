@@ -2,21 +2,21 @@
 
 ## Tema: Grafos1
 
-**Número da Lista**: 25<br>
-**Conteúdo da Disciplina**: Grafos: bfs, dfs, flood fill, bipartição e conectividade<br>
+**Número da Grupo**: 25<br>
+**Conteúdo da Disciplina**: Grafos 1 <br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
 | 18/0068229  |  Victor Yukio Cavalcanti Miki |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 18/0016067  |  Erick levy Barbosa Dos Santos|
 
 ## Sobre 
 O projeto cria um grafo repesentativo de uma cadeia alimentar do jogo de tabuleiro Kariba. Nesse jogo existem um oásis e vários animais.
 
 Cada animal conta com um:
 * nome - espécie do animal.
-* poder - quanto maior o poder do animal maior a quantidade de espécies de animais que ele pode assustar.
+* poder - quanto maior o poder do animal maior a quantidade de espécies de animais que ele pode assustar para poder ocupar o lugar no oasis.
 * imagem - Uma simple imagem representativa de cada animal. (opcinal)
 
 ## Screenshots
