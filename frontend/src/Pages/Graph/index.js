@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnimalService } from "../../Services/animalService"
 import { GraphService } from "../../Services/graphService";
 
@@ -10,11 +8,12 @@ import { InsertAnimalModal } from "../../Components/Modal";
 const GraphView = () => {
 
   const [graph, setGraph] = useState(null);
-  const [show, setShow] = useState(false);
+  const [flag, setFlag] = useState(true);
 
   useEffect(() => {
+    
     const animalService = new AnimalService();
-    const graphService = new GraphService(30);
+    const graphService = new GraphService(1);
     const dados = [];
     const animals = animalService.getAnimals();
 
@@ -22,7 +21,13 @@ const GraphView = () => {
       dados.push(graphService.nodeSelector(a.name, a.name, a.image, a.color))
     })
 
+    console.log(dados)
+
     const connections = animalService.getAnimalsConnections();
+
+    console.log(connections, "teste")
+
+    console.log(graphService.graph())
 
     connections.forEach((c) => {
       dados.push(graphService.edgeSelector(c.predator, c.presa));
@@ -31,44 +36,27 @@ const GraphView = () => {
     })
 
     setGraph(dados);
-  }, [])
-
-  const renderModal = () => {
-
-    console.log(show)
-
-    if (show === true) {
-      return (
-        <InsertAnimalModal
-          setShow={(setShow())}
-          show={show}
-        />
-      )
-    }
-
-    return null
-  }
+  }, [flag])
 
   return (
-    graph ? (<div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center"
-      }}
-    >
-      <GraphComponent
-        graph={graph}
-      />
-      <Button
-        variant="primary"
-        onClick={() => { setShow(true) }}
+    graph ? (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
       >
-        Adicionar animal no oasis
-      </Button>
-      {renderModal}
-    </div>) : (<>Carregando...</>)
+        <GraphComponent
+          graph={graph}
+        />
+        <InsertAnimalModal
+          flag={flag}
+          setFlag={setFlag}
+        />
+      </div>
+    ) : (<>Carregando...</>)
   )
 }
 

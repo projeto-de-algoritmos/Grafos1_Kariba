@@ -1,7 +1,7 @@
 export class GraphService {
 
-  vertex;       // number of vertices in the graph
-  matrixAdj = new Map(); // matrixAdjacent list
+  vertex;       // numero de animais
+  matrixAdj = new Map(); // matrix de adjacencia
 
   constructor(vertex) {
     this.vertex = vertex;
@@ -16,12 +16,8 @@ export class GraphService {
         label,
         image,
         color
-      },
-
-      position: {
-        x: Math.floor(Math.random() * 390),
-        y: Math.floor(Math.random() * 390),
       }
+
     };
 
     return node;
@@ -41,6 +37,8 @@ export class GraphService {
 
   // IMPORTANTE: Trata os dados para o formato de mapping -> exemp: ["rato", ["elefante", "humano",...]]
   addEdge(v, w) {
+
+    console.log(v, "nao achou??")
     const values = this.matrixAdj.get(v) ?? [];
     this.matrixAdj.set(v, [...values, w]);
   }

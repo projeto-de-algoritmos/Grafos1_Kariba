@@ -32,7 +32,7 @@ const GraphComponent = ({graph}) => {
               "height": "70px",
               "background-image": "url(" + elem.data?.image + ")",
               "background-fit": "contain",
-              "background-color": `${elem.data?.color}`
+              "background-color": `${elem.data?.color ? elem.data?.color : "red"}`
             });
           });
         }}
