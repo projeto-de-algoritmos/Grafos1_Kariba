@@ -5,12 +5,12 @@ import { StorageService } from "../../Services/storageService";
 
 import { GraphComponent } from "../../Components/Graph";
 import { InsertAnimalModal } from "../../Components/Modal";
+import { PopulateOasisModal } from "../../Components/Modal/increaseAnimalModal";
 
 const GraphView = () => {
 
   const [graph, setGraph] = useState(null);
   const [flag, setFlag] = useState(true);
-  const [vertex, setVertex] = useState(null)
 
   useEffect(() => {
     
@@ -34,7 +34,6 @@ const GraphView = () => {
 
     setGraph(dados);
     storageService.setData("@Grafo", dados)
-    setVertex(graphService.bfs("Rato").length)
   }, [flag])
 
 
@@ -51,10 +50,12 @@ const GraphView = () => {
         <GraphComponent
           graph={graph}
         />
-        {(vertex % 2 === 0) ? "é bipartido" : "não é bipartido"}
         <InsertAnimalModal
           flag={flag}
           setFlag={setFlag}
+        />
+        <PopulateOasisModal
+          animals={localStorage.getItem("animals")}
         />
       </div>
     ) : (<>Carregando...</>)

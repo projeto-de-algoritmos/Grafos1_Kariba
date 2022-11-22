@@ -69,13 +69,60 @@ export class GraphService {
         for (let i of presas) {
           if (!visited[i]) {
             visited[i] = true;
-            queue.push(i);
+            foundedAnimals.push(i);
           }
         }
       }
     }
 
     return foundedAnimals;
+  }
+
+  isBipartite(V) {
+    const adj = this.matrixAdj;
+    let visited = new Array(V);
+
+    // zerar tudo
+    for(let i = 0; i < V; i++) {
+      visited[i] = -1;
+    }
+
+    let queue = [];
+
+    if (!adj.keys().next().value) {
+      return false;
+    }
+      
+    for (let i of adj.keys().next().value) {
+      if (visited[i] === -1) {
+        queue.push({first: i, second: 0});
+        visited[i] = 0;
+              
+        while (queue.length !== 0) {
+          let p = queue[0];
+          queue.shift();
+        
+          let v = p.first;
+          let c = p.second;
+
+          if (adj) {
+            for (let j of adj.get(v)) {
+              const index = j;
+  
+              if (visited[index] === c)
+                return false;
+              
+              if (visited[index] === -1) {
+                visited[index] = (c === 1) ? 0 : 1;
+                queue.push({first: j, second: visited[index]});
+              }
+            }
+          }
+        }
+      }
+    }
+        
+    return true;
   }
 
   generateGraph() {

@@ -9,7 +9,7 @@ export class AnimalService {
 
   getAnimals() {
     const animais = localStorage.getItem("animals") ?? animals;
-    
+
     return JSON.parse(animais);
   }
 
@@ -17,7 +17,7 @@ export class AnimalService {
     const animais = this.getAnimals() ?? animals
     const index = animais.findIndex(animal => animal.name === name);
 
-    if(index !== -1) {
+    if (index !== -1) {
       return animais[index];
     }
 
@@ -55,24 +55,47 @@ export class AnimalService {
 
     // Conectar os animais na cadeia alimentar pelo poder delas.
     animais.forEach((animal) => {
-      if(animal.power < newAnimal.power) {
+      if (animal.power < newAnimal.power) {
         this.addConnection(newAnimal.name, animal.name);
-      } else if(animal.power > newAnimal.power) {
+      } else if (animal.power > newAnimal.power) {
         this.addConnection(animal.name, newAnimal.name);
       } else {
-        alert("Já existe um animal com esse poder.")
-        return ;
+        this.addConnection(newAnimal.name, animal.name);
+        this.addConnection(animal.name, newAnimal.name);
       }
     })
 
     animais.push(newAnimal);
     localStorage.setItem("animals", JSON.stringify(animais))
 
+
     // Se o poder do animal for maior ou igual a 8 o rato poderá assustar o novo animal.
-    if(newAnimal.power >= 8) {
+    if (newAnimal.power >= 8) {
       this.addConnection("Rato", newAnimal.name);
     }
 
   }
+
+  // deleteAnimal(name) {
+  //   const animais = this.getAnimals();
+
+  //   const index = animais.findIndex((animal) => animal.name === name)
+
+  //   animais.splice(index, 1)
+
+  //   localStorage.setItem("animals", JSON.stringify(animais))
+  // }
+
+  // increasePopulation(name) {
+  //   const animais = this.getAnimals();
+
+  //   const index = animais.findIndex((animal) => animal.name === name)
+
+  //   animais[index].number += 1;
+
+  //   if(animais[index] >= 4) {
+
+  //   }
+  // }
 
 }
