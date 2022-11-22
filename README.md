@@ -20,7 +20,13 @@ Cada animal conta com um:
 * imagem - Uma simple imagem representativa de cada animal. (opcinal)
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![home](./assets/Screenshot%20from%202022-11-21%2023-08-11.png)
+
+![grafo](./assets/Screenshot%20from%202022-11-21%2023-09-19.png)
+
+![add-animal](./assets/Screenshot%20from%202022-11-21%2023-09-58.png)
+
+![ver conexoes](./assets/Screenshot%20from%202022-11-21%2023-10-25.png)
 
 ## Instalação
 **Linguagem**: javaScript<br>
