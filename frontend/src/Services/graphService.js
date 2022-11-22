@@ -79,7 +79,7 @@ export class GraphService {
   }
 
   isBipartite(V) {
-    const adj = this.matrixAdj;
+    const matrix = this.matrixAdj;
     let visited = new Array(V);
 
     // zerar tudo
@@ -89,32 +89,32 @@ export class GraphService {
 
     let queue = [];
 
-    if (!adj.keys().next().value) {
+    if (!matrix.keys().next().value) {
       return false;
     }
       
-    for (let i of adj.keys().next().value) {
+    for (let i of matrix.keys().next().value) {
       if (visited[i] === -1) {
-        queue.push({first: i, second: 0});
+        queue.push({entrou: i, fugiu: 0});
         visited[i] = 0;
               
         while (queue.length !== 0) {
-          let p = queue[0];
+          let presas = queue[0];
           queue.shift();
         
-          let v = p.first;
-          let c = p.second;
+          let predator = presas.entrou;
+          let presa = presas.fugiu;
 
-          if (adj) {
-            for (let j of adj.get(v)) {
+          if (matrix) {
+            for (let j of matrix.get(predator)) {
               const index = j;
   
-              if (visited[index] === c)
+              if (visited[index] === presa)
                 return false;
               
               if (visited[index] === -1) {
-                visited[index] = (c === 1) ? 0 : 1;
-                queue.push({first: j, second: visited[index]});
+                visited[index] = (presa === 1) ? 0 : 1;
+                queue.push({entrou: j, fugiu: visited[index]});
               }
             }
           }

@@ -11,6 +11,7 @@ const GraphView = () => {
 
   const [graph, setGraph] = useState(null);
   const [flag, setFlag] = useState(true);
+  const [isBip, setisBip] = useState(true);
 
   useEffect(() => {
     
@@ -34,6 +35,7 @@ const GraphView = () => {
 
     setGraph(dados);
     storageService.setData("@Grafo", dados)
+    setisBip(graphService.isBipartite("Rato"))
   }, [flag])
 
 
@@ -50,6 +52,7 @@ const GraphView = () => {
         <GraphComponent
           graph={graph}
         />
+        {isBip ? "É bipartido" : "Não é bipartido"}
         <InsertAnimalModal
           flag={flag}
           setFlag={setFlag}
